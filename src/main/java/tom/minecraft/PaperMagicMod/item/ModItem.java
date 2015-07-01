@@ -11,6 +11,7 @@ public class ModItem extends Item {
 	public static final void Init(){
 
 		// PreInit for MinorArcana
+		MinorArcana = new MinorArcana(1, PaperMagicMod.paperMagicTab,"MinorArcana");
 		
 		// Register created items
 		GameRegistry.registerItem(MinorArcana, "paperMagicMinor");
@@ -19,4 +20,3 @@ public class ModItem extends Item {
 		
 
 }
-
