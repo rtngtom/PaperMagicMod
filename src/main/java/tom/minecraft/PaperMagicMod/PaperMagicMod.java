@@ -16,7 +16,7 @@ public class PaperMagicMod {
 	public static final String modname = "Paper Magic Mod";
 	public static final String version = "0.0.0";
 	
-    public static Item card;
+    public static Item MinorArcana;
 	
 	public static CreativeTabs paperMagicTab = new CreativeTabs("Paper Magic"){
 		public Item getTabIconItem() {
@@ -27,22 +27,21 @@ public class PaperMagicMod {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
 		
-		// PreInit for Card
-	    card = new Card();
+		// PreInit for MinorArcana
+	    MinorArcana = new MinorArcana();
         
-	    card.setMaxStackSize(1);
-	    card.setCreativeTab(PaperMagicMod.paperMagicTab);
-	    card.setUnlocalizedName("Card");
+	    MinorArcana.setMaxStackSize(1);
+	    MinorArcana.setCreativeTab(PaperMagicMod.paperMagicTab);
+	    MinorArcana.setUnlocalizedName("Card");
 
 	    
 	    // Register created items
-	    GameRegistry.registerItem(card, "paperMagicCard");
+	    GameRegistry.registerItem(MinorArcana, "paperMagicCard");
 	    System.out.println("Cards Registered.");
 	}
 	
 	@EventHandler
 	public void init(FMLInitializationEvent e) {
-		
 	}
 	
 	
