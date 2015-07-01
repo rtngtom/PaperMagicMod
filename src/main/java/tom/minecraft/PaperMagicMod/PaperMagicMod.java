@@ -3,8 +3,10 @@ package tom.minecraft.PaperMagicMod;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import tom.minecraft.PaperMagicMod.item.MinorArcana;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -16,8 +18,9 @@ public class PaperMagicMod {
 	public static final String modname = "Paper Magic Mod";
 	public static final String version = "0.0.0";
 	
-    public static Item MinorArcana;
-	
+    @SidedProxy(clientSide="tom.minecraft.PaperMagicMod.ClientProxy", serverSide="tom.minecraft.PaperMagicMod.ServerProxy")
+    public static CommonProxy proxy;
+    
 	public static CreativeTabs paperMagicTab = new CreativeTabs("Paper Magic"){
 		public Item getTabIconItem() {
 			return Items.paper;
@@ -26,27 +29,17 @@ public class PaperMagicMod {
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
-		
-		// PreInit for MinorArcana
-	    MinorArcana = new MinorArcana();
-        
-	    MinorArcana.setMaxStackSize(1);
-	    MinorArcana.setCreativeTab(PaperMagicMod.paperMagicTab);
-	    MinorArcana.setUnlocalizedName("Card");
-
-	    
-	    // Register created items
-	    GameRegistry.registerItem(MinorArcana, "paperMagicCard");
-	    System.out.println("Cards Registered.");
+		proxy.preInit(e);
 	}
 	
 	@EventHandler
 	public void init(FMLInitializationEvent e) {
+		proxy.Init(e);
 	}
 	
 	
 	@EventHandler
     public void postInit(FMLPostInitializationEvent e) {
-		System.out.println("Mod loaded.");
+		proxy.postInit(e);
     }
 }
